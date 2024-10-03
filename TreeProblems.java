@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * Avery Walwyn | Section 002
  *
  * This java file contains several simple tree problems that need to be
  * codified. These routines  must use the TreeMap and TreeSet library
@@ -20,14 +20,20 @@ public class TreeProblems {
    */
   
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
+    //create a set to hold all elements from A and B
+    Set<Integer> allElements = new TreeSet<>(setA);
+    //use addAll method to add set B elements to full set
+    allElements.addAll(setB);
 
-    // INSERT CODE HERE - DO NOT FORGET TO PLACE YOUR NAME ABOVE
-    //
-    // This can be done numerous ways, but once such will only that
-    // *several* lines of code. Hint: create two temporary TreeSets and utilize the
-    // methods retainAll(), addAll(), and removeAll(). But in the end, get something to work.
+    //create a set to hold common elements between the two sets
+    Set<Integer> commonElements = new TreeSet<>(setA);
+    //retain all to get shared elem.
+    commonElements.retainAll(setB);
 
-    return setA;
+    //take out all common from set of all
+    allElements.removeAll(commonElements);
+
+    return allElements;
   }
 
 
@@ -40,9 +46,19 @@ public class TreeProblems {
 
   public static void removeEven(Map<Integer, String> treeMap) {
 
-    // INSERT CODE HERE.
+    //new list to store even keys
+    List<Integer> evens = new ArrayList<>();
 
-    return;
+    //loop through keys and store evens in new list
+    for (Integer key : treeMap.keySet()) {
+      if (key % 2 == 0) {
+        evens.add(key);
+      }
+    }
+
+    for (Integer key : evens) {
+      treeMap.remove(key);
+    }
   }
 
 
@@ -54,10 +70,20 @@ public class TreeProblems {
    */
 
   public boolean treesEqual(Map<Integer, String> tree1,Map<Integer, String> tree2 ) {
+    //establish boolean for return statement
+    boolean isEqual = false;
 
-    // INSERT CODE HERE
+    //cmake sure tree sizes same 
+    if (tree1.size() != tree2.size()) {
+      return isEqual;
+    }
+    for (Integer key : tree1.keySet()) {
+      if (tree2.containsKey(key) && tree1.get(key).equals(tree2.get(key))) {
+        isEqual = true;
+      }
+    }
 
-    return false;
+    return isEqual;
 
   }
 
